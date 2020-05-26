@@ -3,27 +3,30 @@ package com.example.demo.resources;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Cliente;
+import com.example.demo.services.ClienteService;
 
 @RestController
 @RequestMapping(value="/clientes")
 
 public class ClienteResources {
-	@RequestMapping(method = RequestMethod.GET)
-	public List <Cliente> listar(){
+	
+	@Autowired
+	ClienteService service;
+	
+	
+	@RequestMapping(value = "{/id}" , method = RequestMethod.GET)
+	public ResponseEntity<?> find(@PathVariable Integer id ){
 		
-		Cliente c1 = new Cliente(1, "Jucileudo Arantes", "Rua 13 de Maio, Bela Vista, 51", "3482-5677", "juju@gmail.com");
-		Cliente c2 = new Cliente(2, "Carmelita Donca", "Av General Sampaio, Centro, 101", "3252-1258", "kaka@gmail.com");
+		Cliente obj = service.buscar(id);
 		
-		List<Cliente> lista = new ArrayList<>();
-		
-		lista.add(c1);
-		lista.add(c2);
-		
-		return lista;
+		return ResponseEntity.ok().body(obj);
 	}
 }
