@@ -1,11 +1,17 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity	
 public class Especie implements Serializable {
@@ -17,6 +23,9 @@ public class Especie implements Serializable {
 	
 	private Integer id;
 	private String nome;
+	
+	@OneToMany(mappedBy = "especie")
+	private List<Animal> animais = new ArrayList<>();
 
 	public Especie() {
 		
@@ -47,6 +56,16 @@ public class Especie implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public List<Animal> getAnimais() {
+		return animais;
+	}
+
+	public void setAnimais(List<Animal> animais) {
+		this.animais = animais;
+	}
+
+	
 	
 	
 }
