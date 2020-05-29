@@ -26,20 +26,23 @@ private static final long serialVersionUID = 1L;
 	@JoinColumn(name = "especie_id")
 	private Especie especie;
 	
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
+	private Cliente cliente;
+	
 	public Animal() {
 		
 	}
 
-	public Animal(Integer id, String nome, int idade, String sexo, Especie especie) {
+	public Animal(Integer id, String nome, int idade, String sexo, Especie especie, Cliente cliente) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.idade = idade;
 		this.sexo = sexo;
 		this.especie = especie;
+		this.cliente = cliente;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -83,6 +86,14 @@ private static final long serialVersionUID = 1L;
 
 	public void setEspecie(Especie especie) {
 		this.especie = especie;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 	

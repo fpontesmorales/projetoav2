@@ -1,11 +1,16 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 
@@ -22,6 +27,10 @@ public class Cliente implements Serializable{
 	private String tel;
 	private String email;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "cliente")
+	private List<Animal> animais = new ArrayList<>();
+	
 	public Cliente () {
 		
 	}
@@ -33,7 +42,10 @@ public class Cliente implements Serializable{
 		this.end = end;
 		this.tel = tel;
 		this.email = email;
+
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -73,6 +85,15 @@ public class Cliente implements Serializable{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+
+	public List<Animal> getAnimais() {
+		return animais;
+	}
+
+	public void setAnimais(List<Animal> animais) {
+		this.animais = animais;
 	}
 
 	@Override
