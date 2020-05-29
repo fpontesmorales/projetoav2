@@ -14,7 +14,7 @@ import com.example.demo.domain.Especie;
 import com.example.demo.services.EspecieService;
 
 @RestController
-@RequestMapping(value="/especie")
+@RequestMapping(value="/especies")
 
 public class EspecieResources {
 	

@@ -38,6 +38,7 @@ public class Projetoav2Application implements CommandLineRunner {
 		Cliente c2 = new Cliente(null, "Carmelita Donca", "Av General Sampaio, Centro, 101", "3252-1258", "kaka@gmail.com");
 		this.clienterepository.saveAll(Arrays.asList(c1,c2));
 		
+		
 			
 		
 	}
