@@ -13,7 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Animal implements Serializable{
@@ -29,7 +32,6 @@ private static final long serialVersionUID = 1L;
 	private String sexo;
 	
 	@ManyToOne 
-	@JsonIgnore
 	@JoinColumn(name = "especie_id")
 	private Especie especie;
 	
