@@ -17,20 +17,24 @@ private static final long serialVersionUID = 1L;
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	
 	private Integer id;
-	private Date data;
+	private String data;
 	private String end;
 	private String procedimento;
+	private Animal animal;
+	private Veterinario veterinario;
 	
 	public Consulta() {
 		
 	}
 
-	public Consulta(Integer id, Date data, String end, String procedimento) {
+	public Consulta(Integer id, String data, String end, String procedimento, Animal animal, Veterinario veterinario) {
 		super();
 		this.id = id;
 		this.data = data;
 		this.end = end;
 		this.procedimento = procedimento;
+		this.animal = animal;
+		this.veterinario = veterinario;
 	}
 
 	public Integer getId() {
@@ -41,11 +45,11 @@ private static final long serialVersionUID = 1L;
 		this.id = id;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
@@ -68,8 +72,22 @@ private static final long serialVersionUID = 1L;
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-		
+
+	public Animal getAnimal() {
+		return animal;
+	}
+
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
+	}
+
+	public Veterinario getVeterinario() {
+		return veterinario;
+	}
+
+	public void setVeterinario(Veterinario veterinario) {
+		this.veterinario = veterinario;
+	}
 	
 
 }

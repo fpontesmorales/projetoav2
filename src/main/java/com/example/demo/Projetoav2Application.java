@@ -9,10 +9,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.domain.Animal;
 import com.example.demo.domain.Cliente;
+import com.example.demo.domain.Consulta;
 import com.example.demo.domain.Especie;
+import com.example.demo.domain.Veterinario;
 import com.example.demo.repositories.AnimalRepository;
 import com.example.demo.repositories.ClienteRepository;
+import com.example.demo.repositories.ConsultaRepository;
 import com.example.demo.repositories.EspecieRepository;
+import com.example.demo.repositories.VeterinarioRepository;
 
 @SpringBootApplication
 public class Projetoav2Application implements CommandLineRunner {
@@ -25,6 +29,12 @@ public class Projetoav2Application implements CommandLineRunner {
 	
 	@Autowired
 	AnimalRepository animalrepository;
+	
+	@Autowired
+	ConsultaRepository consultarepository;
+	
+	@Autowired
+	VeterinarioRepository veterinariorepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Projetoav2Application.class, args);
@@ -51,9 +61,25 @@ public class Projetoav2Application implements CommandLineRunner {
 		
 		c1.getAnimais().addAll(Arrays.asList(a1 , a2));
 		c2.getAnimais().addAll(Arrays.asList(a3 , a4));
-		this.clienterepository.saveAll(Arrays.asList(c1,c2));				
+		this.clienterepository.saveAll(Arrays.asList(c1,c2));
 		
 		this.animalrepository.saveAll(Arrays.asList(a1, a2, a3, a4));
+		
+		Veterinario v1 = new Veterinario (null, "Flávio Pinto" , "12365654-45");
+		Veterinario v2 = new Veterinario (null, "Michel Temer" , "9876543-33");
+		Veterinario v3 = new Veterinario (null, "Juciel Filho" , "3434999-21");
+		this.veterinariorepository.saveAll(Arrays.asList(v1, v2, v3));
+		
+		Consulta con1 = new Consulta (null,"05/05/2020 13:45","Av Rui Barbosa, 100, Aldeota","Exame de Urina",a1,v1);
+		Consulta con2 = new Consulta (null,"05/12/2019 10:45","Av Rui Barbosa, 100, Aldeota","Raio X Torax",a2,v2);
+		Consulta con3 = new Consulta (null,"25/05/2020 09:45","Av Rui Barbosa, 100, Aldeota","Exame de Urina",a3,v2);
+		Consulta con4 = new Consulta (null,"05/11/2018 14:45","Av Rui Barbosa, 100, Aldeota","Cirurgia Rabo",a3,v3);
+		this.consultarepository.saveAll(Arrays.asList(con1, con2, con3, con4));
+		
+				
+		
+		
+		
 		
 		
 		

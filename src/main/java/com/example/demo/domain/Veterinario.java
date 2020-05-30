@@ -3,10 +3,12 @@ package com.example.demo.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Veterinario implements Serializable{
 	
 private static final long serialVersionUID = 1L;
@@ -16,5 +18,43 @@ private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String nome;
 	private String CRMV;
+	
+	public Veterinario(Integer id, String nome, String cRMV) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		CRMV = cRMV;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCRMV() {
+		return CRMV;
+	}
+
+	public void setCRMV(String cRMV) {
+		CRMV = cRMV;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
+	
 
 }
