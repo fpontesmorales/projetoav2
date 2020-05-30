@@ -24,14 +24,13 @@ public class Especie implements Serializable {
 	private Integer id;
 	private String nome;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "especie")
 	private List<Animal> animais = new ArrayList<>();
 
 	public Especie() {
 		
 	}
-
+	
 	public Especie(Integer id, String nome) {
 		super();
 		this.id = id;

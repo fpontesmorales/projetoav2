@@ -28,17 +28,15 @@ private static final long serialVersionUID = 1L;
 	private int idade;
 	private String sexo;
 	
-	@JsonIgnore
 	@ManyToOne 
+	@JsonIgnore
 	@JoinColumn(name = "especie_id")
 	private Especie especie;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "animal")
 	private List<Consulta> consultas = new ArrayList<>();
 	

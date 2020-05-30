@@ -30,6 +30,9 @@ private static final long serialVersionUID = 1L;
 	@OneToMany(mappedBy = "veterinario")
 	private List<Consulta> consultas = new ArrayList<>();
 	
+	public Veterinario () {
+		
+	}
 	
 	public Veterinario(Integer id, String nome, String cRMV) {
 		super();
