@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Consulta implements Serializable{
@@ -20,7 +24,13 @@ private static final long serialVersionUID = 1L;
 	private String data;
 	private String end;
 	private String procedimento;
+	
+	@ManyToOne
+	@JoinColumn(name = "animal_id")
 	private Animal animal;
+	
+	@ManyToOne
+	@JoinColumn(name = "veterinario_id")
 	private Veterinario veterinario;
 	
 	public Consulta() {
@@ -88,6 +98,8 @@ private static final long serialVersionUID = 1L;
 	public void setVeterinario(Veterinario veterinario) {
 		this.veterinario = veterinario;
 	}
+	
+	
 	
 
 }

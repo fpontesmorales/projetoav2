@@ -1,6 +1,8 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Animal implements Serializable{
@@ -22,13 +28,19 @@ private static final long serialVersionUID = 1L;
 	private int idade;
 	private String sexo;
 	
+	@JsonIgnore
 	@ManyToOne 
 	@JoinColumn(name = "especie_id")
 	private Especie especie;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "animal")
+	private List<Consulta> consultas = new ArrayList<>();
 	
 	public Animal() {
 		
@@ -95,11 +107,16 @@ private static final long serialVersionUID = 1L;
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
-	
-	
+
+	public List<Consulta> getConsulta() {
+		return consultas;
+	}
+
+	public void setConsulta(List<Consulta> consulta) {
+		this.consultas = consulta;
+	}
+
 		
-	
 	
 
 }

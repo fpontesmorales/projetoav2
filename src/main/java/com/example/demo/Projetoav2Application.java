@@ -68,15 +68,18 @@ public class Projetoav2Application implements CommandLineRunner {
 		Veterinario v1 = new Veterinario (null, "Flávio Pinto" , "12365654-45");
 		Veterinario v2 = new Veterinario (null, "Michel Temer" , "9876543-33");
 		Veterinario v3 = new Veterinario (null, "Juciel Filho" , "3434999-21");
-		this.veterinariorepository.saveAll(Arrays.asList(v1, v2, v3));
 		
 		Consulta con1 = new Consulta (null,"05/05/2020 13:45","Av Rui Barbosa, 100, Aldeota","Exame de Urina",a1,v1);
 		Consulta con2 = new Consulta (null,"05/12/2019 10:45","Av Rui Barbosa, 100, Aldeota","Raio X Torax",a2,v2);
 		Consulta con3 = new Consulta (null,"25/05/2020 09:45","Av Rui Barbosa, 100, Aldeota","Exame de Urina",a3,v2);
-		Consulta con4 = new Consulta (null,"05/11/2018 14:45","Av Rui Barbosa, 100, Aldeota","Cirurgia Rabo",a3,v3);
-		this.consultarepository.saveAll(Arrays.asList(con1, con2, con3, con4));
+		Consulta con4 = new Consulta (null,"05/11/2018 14:45","Av Rui Barbosa, 100, Aldeota","Cirurgia Rabo",a4,v3);
 		
-				
+		v1.getConsultas().add(con1);
+		v2.getConsultas().addAll(Arrays.asList(con2,con3));
+		v3.getConsultas().addAll(Arrays.asList(con4));
+		
+		this.veterinariorepository.saveAll(Arrays.asList(v1, v2, v3));		
+		this.consultarepository.saveAll(Arrays.asList(con1, con2, con3, con4));
 		
 		
 		
