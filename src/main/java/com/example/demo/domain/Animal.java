@@ -31,6 +31,7 @@ private static final long serialVersionUID = 1L;
 	private int idade;
 	private String sexo;
 	
+	@JsonIgnore
 	@ManyToOne 
 	@JoinColumn(name = "especie_id")
 	private Especie especie;
@@ -39,6 +40,7 @@ private static final long serialVersionUID = 1L;
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "animal")
 	private List<Consulta> consultas = new ArrayList<>();
 	
@@ -116,7 +118,30 @@ private static final long serialVersionUID = 1L;
 		this.consultas = consulta;
 	}
 
-		
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Animal other = (Animal) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}		
 	
 
 }
