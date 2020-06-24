@@ -11,12 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Animal implements Serializable{
@@ -25,24 +20,24 @@ private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
-	
 	private Integer id;
 	private String nome;
 	private int idade;
 	private String sexo;
 	
 	@JsonIgnore
-	@ManyToOne 
-	@JoinColumn(name = "especie_id")
-	private Especie especie;
+	@OneToMany(mappedBy = "animal")
+	private List<Consulta> consulta = new ArrayList<>();
 	
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "animal")
-	private List<Consulta> consultas = new ArrayList<>();
+	@ManyToOne 
+	@JoinColumn(name = "especie_id")
+	private Especie especie;
+
 	
 	public Animal() {
 		
@@ -55,6 +50,20 @@ private static final long serialVersionUID = 1L;
 		this.idade = idade;
 		this.sexo = sexo;
 		this.especie = especie;
+		this.cliente = cliente;
+	}
+	
+	
+
+	public List<Consulta> getConsulta() {
+		return consulta;
+	}
+
+	public void setConsulta(List<Consulta> consulta) {
+		this.consulta = consulta;
+	}
+
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
@@ -106,17 +115,6 @@ private static final long serialVersionUID = 1L;
 		return cliente;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public List<Consulta> getConsulta() {
-		return consultas;
-	}
-
-	public void setConsulta(List<Consulta> consulta) {
-		this.consultas = consulta;
-	}
 
 	@Override
 	public int hashCode() {

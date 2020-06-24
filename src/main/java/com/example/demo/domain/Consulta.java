@@ -1,18 +1,12 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Consulta implements Serializable{
@@ -27,12 +21,10 @@ private static final long serialVersionUID = 1L;
 	private String end;
 	private String procedimento;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "animal_id")
 	private Animal animal;
 	
-	//@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "veterinario_id")
 	private Veterinario veterinario;
