@@ -9,7 +9,6 @@ import com.example.demo.domain.Consulta;
 import com.example.demo.repositories.ConsultaRepository;
 
 @Service
-
 public class ConsultaService {
 	
 	@Autowired

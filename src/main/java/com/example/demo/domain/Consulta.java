@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Consulta implements Serializable{
 	
@@ -25,6 +27,7 @@ private static final long serialVersionUID = 1L;
 	private String end;
 	private String procedimento;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "animal_id")
 	private Animal animal;

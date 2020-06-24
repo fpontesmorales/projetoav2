@@ -27,7 +27,6 @@ public class Cliente implements Serializable{
 	private String tel;
 	private String email;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<Animal> animais = new ArrayList<>();
 	
