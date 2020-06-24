@@ -32,6 +32,7 @@ private static final long serialVersionUID = 1L;
 	@JoinColumn(name = "animal_id")
 	private Animal animal;
 	
+	//@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "veterinario_id")
 	private Veterinario veterinario;
